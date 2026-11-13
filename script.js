@@ -108,5 +108,8 @@ function frame(now){
   }
   requestAnimationFrame(frame);
 }
-document.getElementById('replay').onclick=init;
-init();requestAnimationFrame(frame);
+const credit=document.getElementById('credit'),nm=document.getElementById('nm');
+nm.innerHTML=[...nm.textContent].map((ch,i)=>'<i style="--i:'+i+'">'+(ch===' '?'&nbsp;':ch)+'</i>').join('');
+function playCredit(){credit.classList.remove('on');void credit.offsetWidth;credit.classList.add('on');}
+document.getElementById('replay').onclick=()=>{init();playCredit();};
+init();playCredit();requestAnimationFrame(frame);
